@@ -5,3 +5,8 @@
 - https://www.youtube.com/playlist?list=PL4cUxeGkcC9hxjeEtdHFNYMtCpjNBm3h7
 - https://www.youtube.com/watch?v=6ZnecM3ipu4
 - https://www.npmjs.com/package/nodemon
+- https://www.npmjs.com/package/jsonwebtoken
+- https://www.youtube.com/watch?v=cL3bXzUBFUA
+
+
+npx nodemon app.js
