@@ -1,12 +1,14 @@
 
 const express = require("express");
-var cors = require('cors')
-
 const jwt = require("jsonwebtoken");
 const app = express();
 
-app.use(cors())
+var cors = require('cors');
+app.use(cors());
 
+/*
+metodos HTTP 
+*/
 app.get("/api", (req, res) => {
     res.json({
         mensaje: "Nodejs and JWT"
@@ -20,7 +22,7 @@ app.post("/api/login", (req, res) => {
         email: "henry@email.com"
     }
 
-    jwt.sign({ user }, 'secretkey', { expiresIn: '32s' }, (err, token) => {
+    jwt.sign({ user }, 'secretkey', { expiresIn: '10s' }, (err, token) => {
         res.json({
             token
         });
@@ -42,20 +44,25 @@ app.post("/api/posts", verifyToken, (req, res) => {
     });
 });
 
-// Authorization: Bearer <token>
-function verifyToken(req, res, next) {
+/*
+ Authorization: Bearer <token>
+*/
+ function verifyToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
 
     if (typeof bearerHeader !== 'undefined') {
         const bearerToken = bearerHeader.split(" ")[1];
         console.log(bearerToken);
-        req.token = bearerToken;        
+        req.token = bearerToken;
         next();
 
     } else {
         res.sendStatus(403);
     }
 }
+
+/*
+ */
 
 app.listen(3001, () => {
     console.log("nodejs app running...");
